@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-base-300 overflow-hidden">
+  <div class="h-screen w-screen bg-base-300 overflow-hidden relative flex flex-col flex-nowrap">
     <TheHeader />
     <router-view v-slot="{ Component, route }">
       <transition name="page">

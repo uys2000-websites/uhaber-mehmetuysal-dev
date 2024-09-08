@@ -1,7 +1,7 @@
 <template>
   <div class="collapse">
-    <input type="radio" :name="name" :checked="checked" />
-    <div class="collapse-title">
+    <input class="min-h-0 h-8" type="radio" :name="name" :checked="checked" />
+    <div class="collapse-title min-h-0 p-0 flex justify-center items-center h-8" style="padding-inline-end: 0;">
       <slot name="title" />
     </div>
     <div class="collapse-content">
