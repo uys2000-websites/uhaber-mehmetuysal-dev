@@ -8,8 +8,13 @@
           <p class="mb-5">
             Web sitemi ziyaret edebilirsiniz <a class="link" href="https://mehmetuysal.dev">mehmetuysal.dev</a>
           </p>
-          <p>
+          <p class="mb-5">
             Haberler rss servisleri araciligiyla alinip gemini ai'a ozetletilerek paylasilmaktadir.
+          </p>
+          <p class="mb-5">
+            Her hangi bir hak ihlali soz konusu ise lutfen
+            <a class="link" href="mailto:uhaber@mehmetuysal.dev">uhaber@mehmetuysal.dev</a>
+            araciligi ile bana ulasiniz.
           </p>
         </div>
       </div>
