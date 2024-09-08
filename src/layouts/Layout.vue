@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen w-screen bg-base-300 overflow-hidden relative flex flex-col flex-nowrap">
     <TheHeader />
-    <div class="h-full w-full flex-shrink relative">
+    <div class="h-full w-full flex-shrink relative overflow-hidden">
       <router-view v-slot="{ Component, route }">
         <transition name="page">
           <component :is="Component" :key="route.path" />

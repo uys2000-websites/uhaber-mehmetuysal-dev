@@ -1,10 +1,9 @@
 <template>
-  <div ref="page" class="h-full w-full flex flex-col flex-none items-center overflow-auto pb-8 flex-shrink"
-    @scroll="onScroll">
-    <div class="prose">
+  <div ref="page" class="h-full w-full flex justify-center overflow-auto" @scroll="onScroll">
+    <div class="prose h-max flex flex-col py-4 gap-4">
       <template v-for="unew in news">
-        <div class="p-4">
-          <h2 v-html="unew.title"></h2>
+        <div class="bg-neutral text-neutral-content p-2 rounded-box">
+          <h2 class="my-2 text-neutral-content" v-html="unew.title"></h2>
           <p v-html="unew.summary"></p>
           <div>
             <template v-if="!source">
@@ -14,7 +13,7 @@
               <span>Kategori: <span>{{ unew.category }}</span></span><br />
             </template>
             <span>Ozet Tarihi: {{ new Date(unew.timestamp).toLocaleString() }}</span><br />
-            <span>Kaynak: <a :href="unew.url" target="_blank">{{ unew.url }}</a></span>
+            <span>Kaynak: <a class="link link-info" :href="unew.url" target="_blank">{{ unew.url }}</a></span>
           </div>
         </div>
       </template>
