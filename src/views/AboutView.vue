@@ -4,9 +4,12 @@
       <div class="hero-overlay bg-opacity-40"></div>
       <div class="hero-content text-neutral-content text-center">
         <div class="max-w-md">
-          <h1 class="mb-5 text-5xl font-bold">Created By Mehmet Uysal</h1>
+          <h1 class="mb-5 text-3xl font-bold">Mehmet Uysal Tarafindan Gelistirildi</h1>
           <p class="mb-5">
-            You can check <a href="https://mehmetuysal.dev">mehmetuysal.dev</a>
+            Web sitemi ziyaret edebilirsiniz <a class="link" href="https://mehmetuysal.dev">mehmetuysal.dev</a>
+          </p>
+          <p>
+            Haberler rss servisleri araciligiyla alinip gemini ai'a ozetletilerek paylasilmaktadir.
           </p>
         </div>
       </div>
