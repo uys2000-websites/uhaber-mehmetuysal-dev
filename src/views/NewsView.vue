@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { getNews } from '@/services/firebase/db';
+import { useAppStore } from '@/stores/app';
 
 export default {
   data() {
@@ -31,6 +32,7 @@ export default {
       category: "",
       news: [] as UNews[],
       onloading: false,
+      appStore: useAppStore()
     }
   },
   methods: {
@@ -49,11 +51,13 @@ export default {
     }
   },
   async beforeMount() {
+    this.appStore.hide = true
     this.source = this.$route.params.id as string
     this.category = this.$route.params.category as string
     this.loadNews()
   },
-  mounted() {
+  beforeUnmount() {
+    this.appStore.hide = false
   }
 }
 </script>

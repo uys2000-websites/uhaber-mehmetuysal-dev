@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen w-screen bg-base-300 overflow-hidden relative flex flex-col flex-nowrap">
     <TheHeader />
-    <div class="h-full w-full flex-shrink relative overflow-hidden">
+    <div class="h-full w-full flex-shrink relative" :class="{ 'overflow-hidden': appStore.hide }">
       <router-view v-slot="{ Component, route }">
         <transition name="page">
           <component :is="Component" :key="route.path" />
@@ -13,11 +13,17 @@
 
 <script lang="ts">
 import TheHeader from '@/components/shared/TheHeader.vue';
+import { useAppStore } from '@/stores/app';
 import { RouterView } from 'vue-router'
 export default {
   components: {
     TheHeader,
     RouterView
+  },
+  data() {
+    return {
+      appStore: useAppStore()
+    }
   }
 }
 </script>

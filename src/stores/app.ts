@@ -4,6 +4,7 @@ export const useAppStore = defineStore("app", {
   state() {
     return {
       theme: "light",
+      hide: false,
     };
   },
 });
