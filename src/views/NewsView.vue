@@ -4,8 +4,8 @@
     <div class="prose">
       <template v-for="unew in news">
         <div class="p-4">
-          <h2>{{ unew.title }}</h2>
-          <p>{{ unew.summary }}</p>
+          <h2 v-html="unew.title"></h2>
+          <p v-html="unew.summary"></p>
           <div>
             <template v-if="!source">
               <span>Site: <span>{{ unew.site }}</span></span><br />
