@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen w-screen bg-base-300 overflow-hidden relative flex flex-col flex-nowrap">
     <TheHeader />
-    <div class="h-full w-full flex-shrink relative" :class="{ 'overflow-hidden': appStore.hide }">
+    <div class="h-full w-full flex flex-col flex-shrink relative" :class="{ 'overflow-hidden': appStore.hide }">
       <router-view v-slot="{ Component, route }">
         <transition name="page">
           <component :is="Component" :key="route.path" />
