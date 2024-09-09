@@ -1,22 +1,25 @@
 <template>
-  <div ref="page" class="h-screen w-full flex justify-center overflow-auto -mt-[80px] pt-[80px]" @scroll="onScroll">
-    <div class="prose h-max flex flex-col py-4 gap-4">
-      <template v-for="unew in news">
-        <div class="bg-neutral text-neutral-content p-2 rounded-box">
-          <h2 class="my-2 text-neutral-content" v-html="unew.title"></h2>
-          <p v-html="unew.summary"></p>
-          <div>
-            <template v-if="!source">
-              <span>Site: <span>{{ unew.site }}</span></span><br />
-            </template>
-            <template v-if="!category">
-              <span>Kategori: <span>{{ unew.category }}</span></span><br />
-            </template>
-            <span>Ozet Tarihi: {{ new Date(unew.timestamp).toLocaleString() }}</span><br />
-            <span>Kaynak: <a class="link link-info break-all" :href="unew.url" target="_blank">{{ unew.url }}</a></span>
+  <div class="h-full w-full overflow-hidden p-4">
+    <div class="h-full w-full flex justify-center overflow-auto rounded-box" @scroll="onScroll">
+      <div class="prose h-max flex flex-col py-4 gap-4">
+        <template v-for="unew in news">
+          <div class="bg-neutral text-neutral-content p-2 rounded-box">
+            <h2 class="my-2 text-neutral-content" v-html="unew.title"></h2>
+            <p v-html="unew.summary"></p>
+            <div>
+              <template v-if="!source">
+                <span>Site: <span>{{ unew.site }}</span></span><br />
+              </template>
+              <template v-if="!category">
+                <span>Kategori: <span>{{ unew.category }}</span></span><br />
+              </template>
+              <span>Ozet Tarihi: {{ new Date(unew.timestamp).toLocaleString() }}</span><br />
+              <span>Kaynak: <a class="link link-info break-all" :href="unew.url" target="_blank">{{ unew.url
+                  }}</a></span>
+            </div>
           </div>
-        </div>
-      </template>
+        </template>
+      </div>
     </div>
   </div>
 </template>
