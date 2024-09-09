@@ -13,7 +13,7 @@
               <span>Kategori: <span>{{ unew.category }}</span></span><br />
             </template>
             <span>Ozet Tarihi: {{ new Date(unew.timestamp).toLocaleString() }}</span><br />
-            <span>Kaynak: <a class="link link-info" :href="unew.url" target="_blank">{{ unew.url }}</a></span>
+            <span>Kaynak: <a class="link link-info break-all" :href="unew.url" target="_blank">{{ unew.url }}</a></span>
           </div>
         </div>
       </template>
