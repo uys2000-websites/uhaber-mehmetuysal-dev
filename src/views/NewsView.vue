@@ -1,5 +1,5 @@
 <template>
-  <div ref="page" class="h-full w-full flex justify-center overflow-auto" @scroll="onScroll">
+  <div ref="page" class="h-screen w-full flex justify-center overflow-auto -mt-[80px] pt-[80px]" @scroll="onScroll">
     <div class="prose h-max flex flex-col py-4 gap-4">
       <template v-for="unew in news">
         <div class="bg-neutral text-neutral-content p-2 rounded-box">
@@ -51,7 +51,7 @@ export default {
     }
   },
   async beforeMount() {
-    this.appStore.hide = true
+    this.appStore.hide = false
     this.source = this.$route.params.id as string
     this.category = this.$route.params.category as string
     this.loadNews()
