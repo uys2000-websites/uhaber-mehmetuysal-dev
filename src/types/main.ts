@@ -31,3 +31,10 @@ export interface UJournal {
   category: string;
   organization: string;
 }
+
+export interface ULog {
+  status: string;
+  type: string;
+  name: String;
+  args: any[];
+}

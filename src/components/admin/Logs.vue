@@ -22,21 +22,27 @@
   </div>
 </template>
 
-<script>
-import { getorderedURDocuments } from '@/services/firebase/db';
+<script lang="ts">
+import { getorderedURDocuments, listener } from '@/services/firebase/db';
 import Collapse from '../daisy/Collapse.vue';
+import type { ULog } from '@/types/main';
+import type { URDocument } from '@/types/firebase';
+import type { Unsubscribe } from 'firebase/firestore';
 
 export default {
   components: { Collapse },
   data() {
     return {
-      listener: null,
-      logs: []
+      listener: null as null | Unsubscribe,
+      logs: [] as URDocument<ULog>[]
     }
   },
   async mounted() {
     const now = Date.now();
-    this.logs = await getorderedURDocuments("log")
+    this.logs = await getorderedURDocuments<ULog>("log")
+    this.listener = listener<ULog>("log", now, (data) => {
+      this.logs = this.logs.concat(data)
+    })
   }
 }
 </script>

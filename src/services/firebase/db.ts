@@ -8,6 +8,7 @@ import {
   getDocs,
   getFirestore,
   limit,
+  onSnapshot,
   orderBy,
   query,
   QueryFieldFilterConstraint,
@@ -82,4 +83,21 @@ export const addUDocument = async <T>(
 export const removeDocument = async (col: string, document: string) => {
   const docRef = doc(db, col, document);
   return await deleteDoc(docRef).then(() => true);
+};
+
+export const listener = <T>(
+  col: string,
+  start: number,
+  callback: (data: URDocument<T>[]) => void
+) => {
+  const colRef = collection(db, col);
+  const queryRef = query(
+    colRef,
+    where("timestamp", ">=", start),
+    orderBy("timestamp", "desc")
+  );
+  return onSnapshot(queryRef, (snapshot) => {
+    const data = toURDocuments<T>(snapshot);
+    callback(data);
+  });
 };
