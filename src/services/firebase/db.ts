@@ -1,5 +1,10 @@
 import {
+  addDoc,
   collection,
+  deleteDoc,
+  doc,
+  DocumentReference,
+  getDoc,
   getDocs,
   getFirestore,
   limit,
@@ -8,34 +13,73 @@ import {
   QueryFieldFilterConstraint,
   startAfter,
   where,
+  type WhereFilterOp,
 } from "firebase/firestore";
 import { app } from "./app";
-import { NEWS, SOURCE } from "@/constant";
+import {
+  toUDocument,
+  toURDocument,
+  toURDocuments,
+  type UDocument,
+  type URDocument,
+} from "@/types/firebase";
 
 export const db = getFirestore(app);
 
-export const getSources = async () => {
-  const colRef = collection(db, SOURCE);
-  const snapShot = await getDocs(colRef);
-  return snapShot.docs.map((i) => ({ ...i.data(), id: i.id } as USource));
+export const getURDocument = async <T>(ref: DocumentReference) => {
+  const snapShot = await getDoc(ref);
+  return toURDocument<T>(snapShot);
 };
 
-export const getNews = async (
-  source: string,
-  category: string,
-  last = Date.now()
+export const getURDocumentWithId = async <T>(col: string, document: string) => {
+  const colRef = doc(db, col, document);
+  const snapShot = await getDoc(colRef);
+  return toURDocument<T>(snapShot);
+};
+
+export const getURDocuments = async <T>(col: string) => {
+  const colRef = collection(db, col);
+  const snapShot = await getDocs(colRef);
+  return toURDocuments<T>(snapShot);
+};
+
+export const getorderedURDocuments = async <T>(col: string) => {
+  const colRef = collection(db, col);
+  const queryRef = query(colRef, orderBy("timestamp", "asc"));
+  const snapshot = await getDocs(queryRef);
+  return toURDocuments<T>(snapshot);
+};
+export const getURDocumentsQuery = async <T>(
+  col: string,
+  conditions: Array<[string, WhereFilterOp, string]>,
+  last: number
 ) => {
   const wheres = [] as QueryFieldFilterConstraint[];
-  if (source) wheres.push(where("siteCode", "==", source));
-  if (category) wheres.push(where("categoryCode", "==", category));
-  const colRef = collection(db, NEWS);
+  conditions.forEach((condition) =>
+    wheres.push(where(condition[0], condition[1], condition[2]))
+  );
+  const colRef = collection(db, col);
   const queryRef = query(
     colRef,
     ...wheres,
     orderBy("timestamp", "desc"),
-    startAfter(last),
-    limit(10)
+    startAfter(last)
   );
   const snapShot = await getDocs(queryRef);
-  return snapShot.docs.map((i) => ({ ...i.data(), id: i.id } as UNews));
+  return toURDocuments<T>(snapShot);
+};
+
+export const addUDocument = async <T>(
+  col: string,
+  data: URDocument<T> | UDocument<T>
+) => {
+  const colRef = collection(db, col);
+  const uDocument = "id" in data ? toUDocument(data) : data;
+  const docRef = await addDoc(colRef, uDocument);
+  return { ...data, id: docRef.id } as URDocument<T>;
+};
+
+export const removeDocument = async (col: string, document: string) => {
+  const docRef = doc(db, col, document);
+  return await deleteDoc(docRef).then(() => true);
 };

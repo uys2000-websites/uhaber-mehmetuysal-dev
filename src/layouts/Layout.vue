@@ -8,17 +8,20 @@
         </transition>
       </router-view>
     </div>
+    <TheToasts />
   </div>
 </template>
 
 <script lang="ts">
 import TheHeader from '@/components/shared/TheHeader.vue';
+import TheToasts from '@/components/shared/TheToasts.vue';
 import { useAppStore } from '@/stores/app';
 import { RouterView } from 'vue-router'
 export default {
   components: {
     TheHeader,
-    RouterView
+    RouterView,
+    TheToasts
   },
   data() {
     return {

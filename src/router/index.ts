@@ -11,7 +11,7 @@ router.beforeResolve((to, from) => {
   document.title = `${to.meta.title} | UHaber`;
   const authStore = useAuthStore();
   if (!authStore.isAuthenticated && to.meta.authReqired)
-    return { name: "AppLoader" };
+    return { name: "LoadingView" };
 });
 
 export default router;
