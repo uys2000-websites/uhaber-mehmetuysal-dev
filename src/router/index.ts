@@ -10,7 +10,7 @@ const router = createRouter({
 router.beforeResolve((to, from) => {
   document.title = `${to.meta.title} | UHaber`;
   const authStore = useAuthStore();
-  if (!authStore.isAuthenticated && to.meta.authReqired)
+  if (!authStore.isAuthenticated && to.meta.authRequired == true)
     return { name: "LoadingView" };
 });
 

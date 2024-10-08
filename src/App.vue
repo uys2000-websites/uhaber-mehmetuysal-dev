@@ -19,7 +19,7 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) authStore.id = user.uid
       else authStore.id = null;
-      if (!authStore.id) this.$router.push({ name: "LoaderView" })
+      if (!authStore.id && this.$route.meta.authRequired) this.$router.push({ name: "LoaderView" })
     })
   }
 }
