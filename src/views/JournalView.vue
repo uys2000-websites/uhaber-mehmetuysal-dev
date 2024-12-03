@@ -7,14 +7,14 @@
           <div class="prose bg-neutral text-neutral-content p-2 rounded-box flex-shrink-0">
             <h2 class="my-2 text-neutral-content" v-html="unew.data.result.title"></h2>
             <p v-html="unew.data.result.summary"></p>
-            <div>
+            <div class="flex flex-col">
               <span>
                 Yayin:
                 <span>
                   {{
                     appStore.organizations.find(
                       (o) => o.id == unew.data.organization
-                    )
+                    )?.data.name
                   }}
                 </span>
               </span>
@@ -24,7 +24,7 @@
                   {{
                     appStore.categories.find(
                       (c) => c.id == unew.data.category
-                    )
+                    )?.data.name
                   }}
                 </span>
               </span>
