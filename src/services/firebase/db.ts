@@ -63,7 +63,7 @@ export const getURDocumentsQuery = async <T>(
   const queryRef = query(
     colRef,
     ...wheres,
-    orderBy("timestamp", "desc"),
+    orderBy("timestamp", "asc"),
     startAfter(last)
   );
   const snapShot = await getDocs(queryRef);

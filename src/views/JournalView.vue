@@ -31,7 +31,7 @@
               <span>
                 Ozet Tarihi:
                 <span>
-                  {{ new Date(unew.utimestamp).toLocaleString() }}
+                  {{ new Date(unew.utimestamp).toLocaleString("TR-tr") }}
                 </span>
               </span>
               <span>
@@ -111,7 +111,7 @@ export default {
       const news = await getURDocumentsQuery<UJournal>(
         NEWS,
         [...this.getCategoryConditons(), ...this.getOrganizationConditons()],
-        lastNews?.timestamp ?? Date.now()
+        lastNews?.timestamp ?? 0
       );
       this.news = this.news.concat(news)
     },
